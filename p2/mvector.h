@@ -31,6 +31,17 @@ public:
     mvector(const T *A,int lo, int hi){
         CopyFrom(A,lo,hi);
     }
+    //重载[]运算符
+    mvector& operator[](int i){return _elem[i];}
+    const mvector& operator[](int i )const{return  _elem[i];}
+    //重载 = 运算符
+    mvector& operator=(mvector& v){
+        if(_elem) delete []_elem;
+        CopyFrom(v,0,_size);
+        return *this;
+    };
+
+
     ~mvector() {
         delete [] _elem;
     }

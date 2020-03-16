@@ -5,7 +5,8 @@
 #ifndef P2_MVECTOR_H
 #define P2_MVECTOR_H
 
-
+#include <iostream>
+using namespace std;
 #define DEFAULT_CAPACITY  3
 template <class T>
 class mvector {
@@ -42,17 +43,22 @@ public:
     };
 
 
+
     ~mvector() {
         delete [] _elem;
     }
 
-    int const size(){return _size;}
-    int const capacity(){return _capacity;}
-    bool empty(){return !_size;}
+    int  size()const{return _size;}
+    int capacity()const{return _capacity;}
+    bool empty()const{return !_size;}
 protected:
     void CopyFrom(T const *A, int lo,int hi);//拷贝
     void expand();//检测并扩容
-
+    void shrink(); //检测并删除多余容量
+    int insert(int r, const T &data);//插入
+    int remove(int lo,int hi);//删除
+    T remove(int r);//删除单个元素，返回被删除的元素
+    int find(T const &data,int lo,int hi)const ;
 
 private:
    // int rank;
